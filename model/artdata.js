@@ -23,6 +23,21 @@ const ArtData = new Schema(
     shiped_date: {
       type: Date,
     },
+    fid: {
+      type: String,
+    },
+    user_id: {
+      type: String,
+    },
+    img_url: {
+      type: String,
+    },
+    original_filename: {
+      type: String,
+    },
+    format: {
+      type: String,
+    },
   },
   {
     timestamps: true,

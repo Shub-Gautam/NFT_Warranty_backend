@@ -6,10 +6,9 @@ const Models = require("../model");
 exports.upload_to_cloudinary = async (file_path) => {
   try {
     let rest;
-    cloudinary.v2.uploader.upload(file_path, (err, result) => {
+    await cloudinary.v2.uploader.upload(file_path, (err, result) => {
       if (err) console.log(err);
       rest = result;
-      console.log(result);
     });
     return rest;
   } catch (err) {

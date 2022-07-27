@@ -1,0 +1,29 @@
+[
+  {
+    "hash": "0222",
+    "decodedHash": [
+      {
+        "0": 2
+      },
+      {
+        "2": 2
+      }
+    ],
+    "edition": 1,
+    "date": 1658920050230,
+    "attributes": [
+      {
+        "id": 2,
+        "layer": "background",
+        "name": "Mutant-Background-colour#10",
+        "rarity": "original"
+      },
+      {
+        "id": 2,
+        "layer": "hand",
+        "name": "Mutant-Zombie-Arms#10",
+        "rarity": "original"
+      }
+    ]
+  }
+]

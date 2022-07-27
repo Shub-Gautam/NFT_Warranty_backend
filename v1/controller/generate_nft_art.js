@@ -2,28 +2,36 @@ const mongoose = require("mongoose");
 
 const Models = require("../../model");
 const { upload_to_cloudinary } = require("../../helper/cloudinary_func");
+const { generate_art } = require("../../helper/generate_nft_art");
 
 exports.addnftdata = async (req, res, next) => {
   try {
-    // res.send("Art metadata Added to database");
+    if (!req.body) return res.send("No additional Details provided");
+
+    await generate_art(req.body);
 
     const result = await upload_to_cloudinary(
-      "C:\\Users\\SHUBHAM\\Documents\\NFT-war\\temp\\assets\\1658420220035-463156296.png"
+      `${process.env.PWD}/temp/assets/_NFTart1.png`
     );
 
-    let obj = req.body;
+    console.log(
+      "NFT Art Generated and Uploaded to cloudinary===> " + result.etag
+    );
 
-    obj.img_url = `${result.url}`;
-    obj.original_filename = `${result.original_filename}`;
-    obj.format = `${result.format}`;
+    let obj = {
+      img_url: `${result.url}`,
+      original_filename: `${result.original_filename}`,
+      format: `${result.format}`,
+    };
 
-    const newUser = await Models.ArtData.create(obj);
+    const newData = await Models.ArtData.create(obj);
 
-    console.log("Art generated" + `${newUser._id}`);
+    console.log("Art Details Uploaded to mongo===>" + `${newData._id}`);
 
     res.send("Success");
   } catch (err) {
-    res.send("Sorry Something went wrong");
+    // Delete file
+    res.send("OOPS!, Sorry Something went wrong");
     // next(err);
   }
 };

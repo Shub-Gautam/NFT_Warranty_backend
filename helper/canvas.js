@@ -1,7 +1,7 @@
 const fs = require("fs");
 const { createCanvas, loadImage } = require("canvas");
 const console = require("console");
-const { layersOrder, format, rarity } = require("../input/config");
+const { layersOrder, format, rarity } = require("../NFTlayer/config");
 
 const canvas = createCanvas(format.width, format.height);
 const ctx = canvas.getContext("2d");
@@ -10,9 +10,9 @@ if (!process.env.PWD) {
   process.env.PWD = process.cwd();
 }
 
-const buildDir = `${process.env.PWD}/output`;
+const buildDir = `${process.env.PWD}/temp/assets`;
 const metDataFile = "_metadata.json";
-const layersDir = `${process.env.PWD}/input`;
+const layersDir = `${process.env.PWD}/NFTlayer`;
 
 let metadata = [];
 let attributes = [];
@@ -77,12 +77,12 @@ const buildSetup = () => {
 
 const saveLayer = (_canvas, _edition) => {
   fs.writeFileSync(
-    `${buildDir}/${_edition}.png`,
+    `${buildDir}/_NFTart${_edition}.png`,
     _canvas.toBuffer("image/png")
   );
 };
 
-const addMetadata = (_edition) => {
+const addMetadata = (_edition, _additionalDetails) => {
   let dateTime = Date.now();
   let tempMetadata = {
     hash: hash.join(""),
@@ -90,6 +90,8 @@ const addMetadata = (_edition) => {
     edition: _edition,
     date: dateTime,
     attributes: attributes,
+    company: _additionalDetails.company,
+    serial_no: _additionalDetails.serial_no,
   };
   metadata.push(tempMetadata);
   attributes = [];
@@ -130,7 +132,7 @@ const drawLayer = async (_layer, _edition) => {
   }
 };
 
-const createFiles = async (edition) => {
+const createFiles = async (edition, additionalDetails) => {
   const layers = layersSetup(layersOrder);
 
   let numDupes = 0;
@@ -151,7 +153,7 @@ const createFiles = async (edition) => {
       i--;
     } else {
       Exists.set(key, i);
-      addMetadata(i);
+      addMetadata(i, additionalDetails);
       console.log("Creating edition " + i);
     }
   }

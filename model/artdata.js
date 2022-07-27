@@ -4,15 +4,15 @@ const ArtData = new Schema(
   {
     category: {
       type: String,
-      require: true,
+      // require: true,
     },
     company: {
       type: String,
-      require: true,
+      // require: true,
     },
     product: {
       type: String,
-      require: true,
+      // require: true,
     },
     order_id: {
       type: String,
@@ -37,6 +37,9 @@ const ArtData = new Schema(
     },
     format: {
       type: String,
+    },
+    metadata: {
+      type: Types.ObjectId,
     },
   },
   {

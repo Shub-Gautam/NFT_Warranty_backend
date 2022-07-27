@@ -1,16 +1,16 @@
 [
   {
-    "hash": "0222",
+    "hash": "0221",
     "decodedHash": [
       {
         "0": 2
       },
       {
-        "2": 2
+        "2": 1
       }
     ],
     "edition": 1,
-    "date": 1658920050230,
+    "date": 1658922165687,
     "attributes": [
       {
         "id": 2,
@@ -19,11 +19,13 @@
         "rarity": "original"
       },
       {
-        "id": 2,
+        "id": 1,
         "layer": "hand",
-        "name": "Mutant-Zombie-Arms#10",
+        "name": "Mutant-Tentacle-Arms#10",
         "rarity": "original"
       }
-    ]
+    ],
+    "company": "HP",
+    "serial_no": "SF1548H20"
   }
 ]

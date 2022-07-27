@@ -18,19 +18,25 @@ exports.addnftdata = async (req, res, next) => {
       "NFT Art Generated and Uploaded to cloudinary===> " + result.etag
     );
 
+    const newMetaData = require("../../temp/assets/_metadata.json");
+
+    const metaData = await Models.ArtMetaData.create(newMetaData[0]);
+
+    console.log("Art Meta Uploaded to mongodb===> " + metaData._id);
+
     let obj = {
-      img_url: `${result.url}`,
+      img_url: `${result.secure_url}`,
       original_filename: `${result.original_filename}`,
       format: `${result.format}`,
+      metadata: metaData._id,
     };
 
     const newData = await Models.ArtData.create(obj);
 
     console.log("Art Details Uploaded to mongo===>" + `${newData._id}`);
 
-    res.send("Success");
+    res.send({ status: 200, message: { nft_url: result.secure_url } });
   } catch (err) {
-    // Delete file
     res.send("OOPS!, Sorry Something went wrong");
     // next(err);
   }

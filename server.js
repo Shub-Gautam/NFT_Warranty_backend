@@ -9,6 +9,9 @@ const cloudinary = require("cloudinary");
 const app = express();
 const PORT = process.env.LOCAL_PORT;
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 /* Moralis init code */
 const serverUrl = `${process.env.MORALIS_SERVER_URL}`;
 const appId = `${process.env.MORALIS_APP_ID}`;

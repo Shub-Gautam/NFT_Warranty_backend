@@ -3,20 +3,20 @@ const { Schema, model, Types } = require("mongoose");
 const ArtMetaData = new Schema(
   {
     company: {
-      Type: String,
+      type: String,
     },
     serial_no: {
-      Type: String,
+      type: String,
     },
     hash: {
-      Type: String,
+      type: String,
     },
-    decodedHash: { Type: Types.Array },
+    decodedHash: { type: Array },
     edition: {
-      Type: Number,
+      type: Number,
     },
-    date: { Type: Number },
-    attributes: { Type: Types.Array },
+    date: { type: Number },
+    attributes: { type: Array },
   },
   {
     timestamps: true,

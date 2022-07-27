@@ -25,6 +25,14 @@ cloudinary.config({
   api_secret: `${process.env.CLOUDINARY_API_SECRET}`,
 });
 
+app.use((req, res, next) => {
+  const info = req.method + " " + res.statusCode + " " + req.url;
+  console.log("API HIT -------------->", info, "\n|\nv\n|\nv\n");
+  if (!req.header("lang") || req.header("lang") == "") req.lang = "en";
+  else req.lang = req.header("lang");
+  next();
+});
+
 // Test Api
 app.use("/test", async (req, res, next) => {
   res.status(200).send({ status: 200, message: "TEST API" });

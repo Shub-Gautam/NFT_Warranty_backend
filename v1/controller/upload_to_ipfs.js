@@ -1,27 +1,71 @@
+var request = require("request");
+const fs = require("fs");
+const Model = require("../../model");
+const { uploadFile, uploadJson } = require("../../helper/ipfsClient");
+
 exports.upload = async (req, res, next) => {
   try {
-    // Save file input to IPFS
-    const data = fileInput.files[0];
-    const file = new Moralis.File(data.name, data);
-    await file.saveIPFS();
+    const artData = await Model.ArtData.findOne({ _id: req.body._id });
 
-    //console.log(file.ipfs(), file.hash())
+    // Process to fetch nft art
+    let url = `${artData.img_url}`;
 
-    // Save file reference to Moralis
-    const jobApplication = new Moralis.Object("Applications");
-    jobApplication.set("name", "Satoshi");
-    jobApplication.set("resume", file);
-    await jobApplication.save();
+    request.defaults({ encoding: null });
 
-    // Retrieve file
-    const query = new Moralis.Query("Applications");
-    query.equalTo("name", "Satoshi");
-    query.find().then(function ([application]) {
-      const ipfs = application.get("resume").ipfs();
-      const hash = application.get("resume").hash();
-      console.log("IPFS url", ipfs);
-      console.log("IPFS hash", hash);
+    let requests = {
+      headers: {
+        "Content-Type": "image/jpeg",
+        Authorization: "your token",
+      },
+      encoding: "binary",
+    };
+
+    request.get(url, requests, (error, response, body) => {
+      if (error) {
+        console.log("error in get photo", error);
+        return "default image to server";
+      } else {
+        if (response.statusCode == 200) {
+          fs.writeFile(
+            "./temp/uploadable/01_NFT.png",
+            body,
+            "binary",
+            function (err) {
+              if (err) {
+                return "your message";
+              } else {
+                return "success";
+              }
+            }
+          );
+        } else {
+          console.log("error in get photo");
+          return res.send("Sorry Something went wrong");
+        }
+      }
     });
+
+    // Fetching Meta data
+    const jsonData = await Model.ArtMetaData.findOne({
+      _id: artData.metadata,
+    }).lean();
+
+    console.log(jsonData);
+
+    const uploadedFile = await uploadFile(
+      "C:\\Users\\SHUBHAM\\Documents\\NFT-war\\temp\\uploadable\\01_NFT.png"
+    );
+    const uploadedJson = await uploadJson(jsonData);
+
+    const mainNFT = {
+      nft_id: artData.nft_id,
+      filehash: uploadedFile.cid,
+      filepath: uploadedFile.path,
+      metadatahash: uploadedJson.cid,
+      metadatapath: uploadedJson.path,
+    };
+
+    res.send("success");
   } catch (err) {
     next(err);
   }

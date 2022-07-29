@@ -23,6 +23,13 @@ const ArtData = new Schema(
     shiped_date: {
       type: Date,
     },
+    warranty: {
+      type: Number,
+    },
+    nft_id: {
+      type: Types.UUID,
+      required: true,
+    },
     fid: {
       type: String,
     },

@@ -12,12 +12,16 @@
   "license": "ISC",
   "dependencies": {
     "@openzeppelin/contracts": "^4.7.0",
+    "axios": "^0.27.2",
     "canvas": "^2.9.3",
     "cloudinary": "^1.30.1",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "hardhat": "^2.10.0",
+    "ipfs-http-client": "^53.0.1",
     "mongoose": "^6.4.4",
-    "moralis": "^1.9.1"
+    "moralis": "^1.9.1",
+    "request": "^2.88.2",
+    "uuid": "^8.3.2"
   }
 }

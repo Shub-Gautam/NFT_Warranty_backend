@@ -9,4 +9,6 @@ const generate_art = async (additionalDet) => {
   createMetaData();
 };
 
+// generate_art();
+
 module.exports = { generate_art };

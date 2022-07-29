@@ -1,6 +1,6 @@
 const layersOrder = [
-  { name: "background", number: 2 },
-  { name: "baseitem", number: 2 },
+  { name: "background", number: 7 },
+  { name: "baseitem", number: 7 },
   { name: "hand", number: 2 },
   //   { name: "logo", number: 1 },
 ];

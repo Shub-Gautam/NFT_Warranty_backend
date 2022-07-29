@@ -19,7 +19,7 @@ exports.addUser = async (req, res, next) => {
 
 exports.getUser = async (req, res, next) => {
   try {
-    const newUser = await Models.User.findOne(req.body);
+    const newUser = await Models.User.findOne({ _id: req.body._id });
     if (!newUser) return res.send("No user found !");
     res.send(newUser);
   } catch (err) {

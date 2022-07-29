@@ -1,4 +1,6 @@
 const { Schema, model, Types } = require("mongoose");
+const mongoose = require("mongoose");
+var UUID = mongoose.Types.UUID;
 
 const NftPre = new Schema(
   {
@@ -7,7 +9,7 @@ const NftPre = new Schema(
       ref: "user",
     },
     nft_id: {
-      type: Types.UUID,
+      type: String,
     },
     filehash: { type: String, required: true },
     filepath: { type: String, required: true },

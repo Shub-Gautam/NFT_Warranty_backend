@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-import { v4 as uuidv4 } from "uuid";
+const { v4: uuidv4 } = require("uuid");
 const Models = require("../../model");
 const { upload_to_cloudinary } = require("../../helper/cloudinary_func");
 const { generate_art } = require("../../helper/generate_nft_art");
@@ -47,6 +47,26 @@ exports.addnftdata = async (req, res, next) => {
 
 exports.mintNft = async (req, res, next) => {
   try {
+  } catch (err) {
+    res.send("OOPS!, Sorry Something went wrong");
+    // next(err);
+  }
+};
+
+exports.getNft = async (req, res, next) => {
+  try {
+    const foundedObj = await Models.NftPre.findAll(req.body);
+    res.send(foundedObj);
+  } catch (err) {
+    res.send("OOPS!, Sorry Something went wrong");
+    // next(err);
+  }
+};
+
+exports.getNft = async (req, res, next) => {
+  try {
+    const foundedObj = await Models.ArtData.findAll(req.body);
+    res.send(foundedObj);
   } catch (err) {
     res.send("OOPS!, Sorry Something went wrong");
     // next(err);

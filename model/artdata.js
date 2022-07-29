@@ -1,4 +1,7 @@
 const { Schema, model, Types } = require("mongoose");
+const mongoose = require("mongoose");
+
+var UUID = mongoose.Types.UUID;
 
 const ArtData = new Schema(
   {
@@ -27,7 +30,7 @@ const ArtData = new Schema(
       type: Number,
     },
     nft_id: {
-      type: Types.UUID,
+      type: String,
       required: true,
     },
     fid: {

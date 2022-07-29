@@ -31,8 +31,8 @@ app.use("/test", async (req, res, next) => {
 });
 
 // Routes Api
-const route = require("./v1/route");
-app.use("/api", require("./v1/route/upload_to_ipfs"));
+const route = require("./route.js");
+app.use("/api", route);
 
 app.listen(PORT, () => {
   console.log("====== PORT - " + PORT + " ========");

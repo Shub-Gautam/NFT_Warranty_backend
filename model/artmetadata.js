@@ -12,7 +12,7 @@ const ArtMetaData = new Schema(
       type: String,
     },
     nft_art_id: {
-      type: Types.UUID,
+      type: String,
       required: true,
     },
     filehash: {

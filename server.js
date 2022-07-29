@@ -6,7 +6,7 @@ const { mongoose } = require("./utils/mongo_connector");
 const cloudinary = require("cloudinary");
 
 const app = express();
-const PORT = process.env.LOCAL_PORT;
+const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

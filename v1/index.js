@@ -2,8 +2,8 @@ const router = require("express").Router();
 
 const Routes = require("./route/");
 
-router.use("/generate", Routes.generate_nft_art);
+router.use("/nft", Routes.nft);
 router.use("/auth", Routes.user);
-router.use("/mint", Routes.mint);
+router.use("/ipfs", Routes.ipfs);
 
 module.exports = router;

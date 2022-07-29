@@ -44,3 +44,11 @@ exports.addnftdata = async (req, res, next) => {
     // next(err);
   }
 };
+
+exports.mintNft = async (req, res, next) => {
+  try {
+  } catch (err) {
+    res.send("OOPS!, Sorry Something went wrong");
+    // next(err);
+  }
+};

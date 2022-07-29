@@ -34,7 +34,8 @@ const ArtData = new Schema(
       type: String,
     },
     user_id: {
-      type: String,
+      type: Types.ObjectId,
+      ref: "user",
     },
     img_url: {
       type: String,

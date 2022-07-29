@@ -58,6 +58,7 @@ exports.upload = async (req, res, next) => {
     const uploadedJson = await uploadJson(jsonData);
 
     const mainNFT = {
+      user_id: artData.user_id,
       nft_id: artData.nft_id,
       filehash: uploadedFile.cid,
       filepath: uploadedFile.path,

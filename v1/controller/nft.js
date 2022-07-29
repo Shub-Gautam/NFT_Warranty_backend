@@ -63,7 +63,7 @@ exports.getNft = async (req, res, next) => {
   }
 };
 
-exports.getNft = async (req, res, next) => {
+exports.getArtData = async (req, res, next) => {
   try {
     const foundedObj = await Models.ArtData.findAll(req.body);
     res.send(foundedObj);

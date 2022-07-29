@@ -11,7 +11,7 @@ const UserSchema = new Schema(
       type: String,
     },
     wallet: {
-      type: Boolean,
+      type: String,
       require: true,
     },
     email: {

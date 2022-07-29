@@ -66,6 +66,8 @@ exports.upload = async (req, res, next) => {
       metadatapath: uploadedJson.path,
     };
 
+    const nft = await Model.NftPre.create(mainNFT);
+
     res.send("success");
   } catch (err) {
     next(err);
